@@ -3,9 +3,7 @@ import './styles.css'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined
+  UserOutlined
 } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
 
@@ -19,7 +17,7 @@ const LayoutComponent: FC<ILayoutComponent> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <Layout className='layout-container'>
+    <Layout className="layout-container">
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo" />
         <Menu
@@ -30,17 +28,7 @@ const LayoutComponent: FC<ILayoutComponent> = ({ children }) => {
             {
               key: '1',
               icon: <UserOutlined />,
-              label: 'nav 1'
-            },
-            {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'nav 2'
-            },
-            {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'nav 3'
+              label: 'Employee'
             }
           ]}
         />
@@ -55,16 +43,7 @@ const LayoutComponent: FC<ILayoutComponent> = ({ children }) => {
             }
           )}
         </Header>
-        <Content
-          className="site-layout-background"
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280
-          }}
-        >
-          {children}
-        </Content>
+        <Content className="site-layout-background">{children}</Content>
       </Layout>
     </Layout>
   )

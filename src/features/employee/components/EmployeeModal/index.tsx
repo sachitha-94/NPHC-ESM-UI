@@ -28,7 +28,7 @@ const EmployeeModal: React.FC<IEmployeeModal> = ({
   const handleCancel = (): void => {
     setIsModalOpen(false)
   }
-  console.log('e', employee)
+
   return (
     <Modal
       title="Update Employee"
