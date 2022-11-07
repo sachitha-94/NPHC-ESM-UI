@@ -35,22 +35,27 @@ const EmployeeTable: FC = () => {
     {
       title: EmployeeLabel.id,
       dataIndex: EmployeeData.id,
-      key: EmployeeData.id
+      key: EmployeeData.id,
+      defaultSortOrder: 'ascend',
+      sorter: (a, b) => a.id.localeCompare(b.id)
     },
     {
       title: EmployeeLabel.fullName,
       dataIndex: EmployeeData.fullName,
-      key: EmployeeData.fullName
+      key: EmployeeData.fullName,
+      sorter: (a, b) => a.fullName.localeCompare(b.fullName)
     },
     {
       title: EmployeeLabel.userName,
       dataIndex: EmployeeData.userName,
-      key: EmployeeData.userName
+      key: EmployeeData.userName,
+      sorter: (a, b) => a.userName.localeCompare(b.userName)
     },
     {
       title: EmployeeLabel.salary,
       dataIndex: EmployeeData.salary,
-      key: EmployeeData.salary
+      key: EmployeeData.salary,
+      sorter: (a, b) => a.salary - b.salary
     },
     {
       title: 'Action',
@@ -81,7 +86,15 @@ const EmployeeTable: FC = () => {
 
   return (
     <>
-      <Table columns={columns} dataSource={employeeList} />
+      <Table
+        columns={columns}
+        dataSource={employeeList}
+        pagination={{
+          defaultPageSize: 5,
+          showSizeChanger: true,
+          pageSizeOptions: ['5', '10', '15']
+        }}
+      />
       {isModalOpen && !(selectedEmployee == null) && (
         <EmployeeModal
           employee={selectedEmployee}
