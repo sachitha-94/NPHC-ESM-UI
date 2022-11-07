@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input, Modal, Space } from 'antd'
+import { Button, Form, Input, Modal, Space, InputNumber } from 'antd'
 import { Employee } from 'types/employee'
 import {
   EmployeeData,
@@ -48,6 +48,9 @@ const EmployeeModal: React.FC<IEmployeeModal> = ({
           label={EmployeeLabel.id}
           name={EmployeeData.id}
           initialValue={employee?.id}
+          rules={[
+            { required: true, message: `Please input ${EmployeeLabel.id}` }
+          ]}
         >
           <Input disabled />
         </Form.Item>
@@ -55,6 +58,9 @@ const EmployeeModal: React.FC<IEmployeeModal> = ({
           label={EmployeeLabel.fullName}
           name={EmployeeData.fullName}
           initialValue={employee?.fullName}
+          rules={[
+            { required: true, message: `Please input ${EmployeeLabel.fullName}` }
+          ]}
         >
           <Input />
         </Form.Item>
@@ -62,6 +68,9 @@ const EmployeeModal: React.FC<IEmployeeModal> = ({
           label={EmployeeLabel.userName}
           name={EmployeeData.userName}
           initialValue={employee?.userName}
+          rules={[
+            { required: true, message: `Please input ${EmployeeLabel.userName}` }
+          ]}
         >
           <Input />
         </Form.Item>
@@ -73,7 +82,7 @@ const EmployeeModal: React.FC<IEmployeeModal> = ({
           ]}
           initialValue={employee?.salary}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 16, span: 8 }}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Modal, Upload, UploadProps } from 'antd'
+import { Button, message, Modal, Upload, UploadProps } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
 interface IFileUploadModal {
@@ -20,9 +20,15 @@ const FileUploadModal: React.FC<IFileUploadModal> = ({
 
   const props: UploadProps = {
     beforeUpload (file, FileList) {
-      setFiles(FileList)
+      const isLt2M = file.size / 1024 / 1024 < 2
+      if (!isLt2M) {
+        void message.error('Image must smaller than 2MB!')
+      } else {
+        setFiles(FileList)
+      }
     },
-    multiple: true
+    multiple: true,
+    accept: '.csv'
   }
 
   return (
