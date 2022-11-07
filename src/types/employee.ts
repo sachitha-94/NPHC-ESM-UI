@@ -2,7 +2,7 @@ import { Status } from 'constant'
 
 export interface Employee {
   id: string
-  username: string
+  userName: string
   fullName: string
   salary: number
 }
@@ -10,4 +10,5 @@ export interface Employee {
 export interface EmployeeState {
   employeeList: Employee[]
   status: Status
+  uploadCSV: Status
 }
