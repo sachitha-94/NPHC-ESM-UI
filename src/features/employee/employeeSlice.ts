@@ -1,8 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Status } from 'constant'
 
-import { EmployeeState } from 'types/employee'
-import { fetchAllEmployees } from './employeeAPI'
+import { Employee, EmployeeState } from 'types/employee'
+import {
+  deleteEmployee,
+  fetchAllEmployees,
+  updateEmployee
+} from './employeeAPI'
 
 const initialState: EmployeeState = {
   employeeList: [],
@@ -16,6 +20,36 @@ export const fetchAllEmployeeAsync = createAsyncThunk(
       const response = await fetchAllEmployees()
       return response.data?.data
     } catch (error) {}
+  }
+)
+
+export const deleteEmployeeAsync = createAsyncThunk(
+  'employee/delete',
+  async (id: string, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await deleteEmployee(id)
+      if (response?.status === 204) {
+        void dispatch(fetchAllEmployeeAsync())
+      }
+      return response.data?.data
+    } catch (error) {
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const updateEmployeeAsync = createAsyncThunk(
+  'employee/update',
+  async (employee: Employee, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await updateEmployee(employee)
+      if (response?.status === 204) {
+        void dispatch(fetchAllEmployeeAsync())
+      }
+      return response.data?.data
+    } catch (error) {
+      return rejectWithValue(error)
+    }
   }
 )
 

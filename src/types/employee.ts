@@ -2,7 +2,7 @@ import { Status } from 'constant'
 
 export interface Employee {
   id: string
-  username: string
+  userName: string
   fullName: string
   salary: number
 }

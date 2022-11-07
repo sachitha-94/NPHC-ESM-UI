@@ -1,13 +1,13 @@
 export const EmployeeData = {
   id: 'id',
-  username: 'userName',
+  userName: 'userName',
   fullName: 'fullName',
   salary: 'salary'
 }
 
 export const EmployeeLabel = {
   id: 'ID',
-  username: 'Login',
+  userName: 'Login',
   fullName: 'Name',
   salary: 'Salary'
 }
