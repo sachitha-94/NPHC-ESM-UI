@@ -10,4 +10,5 @@ export interface Employee {
 export interface EmployeeState {
   employeeList: Employee[]
   status: Status
+  uploadCSV: Status
 }

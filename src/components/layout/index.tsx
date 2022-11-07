@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react'
-import 'antd/dist/antd.css'
 import './styles.css'
 import {
   MenuFoldOutlined,

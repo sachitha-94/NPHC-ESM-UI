@@ -22,6 +22,7 @@ const EmployeeModal: React.FC<IEmployeeModal> = ({
 
   const handleSubmit = (values: Employee): void => {
     dispatch(updateEmployeeAsync(values))
+    setIsModalOpen(false)
   }
 
   const handleCancel = (): void => {
@@ -48,7 +49,7 @@ const EmployeeModal: React.FC<IEmployeeModal> = ({
           name={EmployeeData.id}
           initialValue={employee?.id}
         >
-          <Input disabled/>
+          <Input disabled />
         </Form.Item>
         <Form.Item
           label={EmployeeLabel.fullName}

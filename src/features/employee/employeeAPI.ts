@@ -12,3 +12,11 @@ export const deleteEmployee: any = async (id: string) => {
 export const updateEmployee: any = async (employee: Employee) => {
   return await api.put(`/employees/${employee?.id}`, employee)
 }
+
+export const uploadEmployeesCSV: any = async (data: FormData) => {
+  return await api.post('/employees/upload', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}
