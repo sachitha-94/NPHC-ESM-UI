@@ -1,7 +1,11 @@
 import React, { FC, useState } from 'react'
 import './styles.css'
-import { Button, Space, Table, Tooltip } from 'antd'
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { Button, Modal, Space, Table, Tooltip } from 'antd'
+import {
+  DeleteOutlined,
+  EditOutlined,
+  ExclamationCircleOutlined
+} from '@ant-design/icons'
 import type { ColumnsType } from 'antd/es/table'
 import { Employee } from 'types/employee'
 import {
@@ -22,6 +26,8 @@ const EmployeeTable: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>()
 
+  const { confirm } = Modal
+
   const handleDeleteEmploee = (id: string): void => {
     dispatch(deleteEmployeeAsync(id))
   }
@@ -29,6 +35,16 @@ const EmployeeTable: FC = () => {
   const handleUpdateEmploee = (employee: Employee): void => {
     setIsModalOpen(true)
     setSelectedEmployee(employee)
+  }
+
+  const showConfirm = (employee: Employee): void => {
+    confirm({
+      title: `Do you Want to delete these employee ${employee.id}?`,
+      icon: <ExclamationCircleOutlined />,
+      onOk () {
+        handleDeleteEmploee(employee.id)
+      }
+    })
   }
 
   const columns: ColumnsType<Employee> = [
@@ -76,7 +92,7 @@ const EmployeeTable: FC = () => {
               shape="circle"
               danger
               icon={<DeleteOutlined />}
-              onClick={() => handleDeleteEmploee(record?.id)}
+              onClick={() => showConfirm(record)}
             />
           </Tooltip>
         </Space>
