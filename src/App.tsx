@@ -1,16 +1,17 @@
 import React, { FC } from 'react'
 
-import Counter from 'features/counter/Counter'
+import Employee from 'features/employee'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Layout } from 'components'
 
 const App: FC = () => {
   return (
     <BrowserRouter>
-      <div data-testid="app">
+      <Layout data-testid="layout">
         <Routes>
-          <Route path="/" element={<Counter />}></Route>
+          <Route path="/" element={<Employee />}></Route>
         </Routes>
-      </div>
+      </Layout>
     </BrowserRouter>
   )
 }
