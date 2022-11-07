@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { store } from './app/store'
 import App from './App'
+import AppFeature from 'features/app/app'
 import './index.css'
 import 'antd/dist/antd.css'
 
@@ -13,6 +14,7 @@ const root = createRoot(container)
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <AppFeature />
       <App />
     </Provider>
   </React.StrictMode>

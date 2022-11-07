@@ -8,6 +8,8 @@ import {
   updateEmployee,
   uploadEmployeesCSV
 } from './employeeAPI'
+import { actions as appActions } from '../app/app.slice'
+import { AlertTypes } from 'types/common'
 
 const initialState: EmployeeState = {
   employeeList: [],
@@ -32,9 +34,21 @@ export const deleteEmployeeAsync = createAsyncThunk(
       const response = await deleteEmployee(id)
       if (response?.status === 204) {
         void dispatch(fetchAllEmployeeAsync())
+        dispatch(
+          appActions.triggerAlert({
+            type: AlertTypes.success,
+            childern: 'Successfully Deleted'
+          })
+        )
       }
       return response.data?.data
     } catch (error) {
+      dispatch(
+        appActions.triggerAlert({
+          type: AlertTypes.error,
+          childern: 'Error..! Please Try Again'
+        })
+      )
       return rejectWithValue(error)
     }
   }
@@ -47,9 +61,21 @@ export const updateEmployeeAsync = createAsyncThunk(
       const response = await updateEmployee(employee)
       if (response?.status === 204) {
         void dispatch(fetchAllEmployeeAsync())
+        dispatch(
+          appActions.triggerAlert({
+            type: AlertTypes.success,
+            childern: 'Successfully Updated'
+          })
+        )
       }
       return response.data?.data
     } catch (error) {
+      dispatch(
+        appActions.triggerAlert({
+          type: AlertTypes.error,
+          childern: 'Error..! Please Try Again'
+        })
+      )
       return rejectWithValue(error)
     }
   }
@@ -58,14 +84,26 @@ export const updateEmployeeAsync = createAsyncThunk(
 export const uploadEmployeesCSVAsync = createAsyncThunk(
   'employee/upload/csv',
   async (file: FormData, { rejectWithValue, dispatch }) => {
-    console.log('ssss', file)
     try {
       const response = await uploadEmployeesCSV(file)
       if (response?.status === 201) {
         void dispatch(fetchAllEmployeeAsync())
       }
+      dispatch(
+        appActions.triggerAlert({
+          type: AlertTypes.success,
+          childern: 'Successfully Uploaded'
+        })
+      )
+
       return response.data?.data
     } catch (error) {
+      dispatch(
+        appActions.triggerAlert({
+          type: AlertTypes.error,
+          childern: 'Error..! Please Try Again'
+        })
+      )
       return rejectWithValue(error)
     }
   }
