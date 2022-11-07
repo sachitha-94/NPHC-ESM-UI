@@ -71,7 +71,22 @@ const EmployeeTable: FC = () => {
       title: EmployeeLabel.salary,
       dataIndex: EmployeeData.salary,
       key: EmployeeData.salary,
-      sorter: (a, b) => a.salary - b.salary
+      sorter: (a, b) => a.salary - b.salary,
+      filters: [
+        {
+          text: '< 1000',
+          value: 1000
+        },
+        {
+          text: '< 10000',
+          value: 10000
+        },
+        {
+          text: '< 50000',
+          value: 50000
+        }
+      ],
+      onFilter: (value, record) => record.salary <= Number(value)
     },
     {
       title: 'Action',
