@@ -49,3 +49,8 @@ Both the server and client need to be installed and started.
 3) `create .env file from .env.example`
 4) `add valid mongo db connection string for MONGO_DB_URL in .env file`
 4) `npm start`
+
+### Sample Data
+
+
+ Employee CSV File - (https://github.com/sachitha-94/NPHC-ESM-UI/blob/main/NPHC_ESM_Employees.csv)
